@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:utaxi/services/auth.dart';
 import 'package:utaxi/services/database.dart';
 
@@ -11,6 +12,8 @@ class HomeS extends StatefulWidget {
 }
 
 class _HomeSState extends State<HomeS> {
+
+
   //firestore
   final FireStoreService fireStoreService = FireStoreService();
 
@@ -40,6 +43,28 @@ class _HomeSState extends State<HomeS> {
             ));
   }
 
+  Future<Position> _Location() async {
+    bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if (!serviceEnabled) {
+      return Future.error('Location disabled');
+    }
+
+    LocationPermission permission = await Geolocator.checkPermission();
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+      if (permission == LocationPermission.denied) {
+        return Future.error('Location is Denied');
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location is disabled forver');
+    }
+
+    return await Geolocator.getCurrentPosition();
+  }
+
+  void userBox1() {}
   final User? user = Auth().currentUser;
 
   Future<void> signOut() async {
@@ -76,8 +101,9 @@ class _HomeSState extends State<HomeS> {
             SizedBox(
               height: 30.0,
             ),
+            ElevatedButton(onPressed: _Location, child: Text('Get Loc')),
             Text(
-              "or LogIn with",
+              "Current Loation of the User",
               style: TextStyle(
                   color: Color(0xFF273671),
                   fontSize: 22.0,
