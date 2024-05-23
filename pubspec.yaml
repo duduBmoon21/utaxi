@@ -45,6 +45,7 @@ dependencies:
   otp_pin_field: ^1.2.4
   geolocator: ^12.0.0
   geocoding: ^3.0.0
+  flutter_osm_plugin: ^1.0.5
 
 dev_dependencies:
   flutter_test:

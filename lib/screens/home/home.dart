@@ -12,7 +12,14 @@ class HomeS extends StatefulWidget {
 }
 
 class _HomeSState extends State<HomeS> {
-
+//get Location
+  void getLocation() async {
+    await Geolocator.checkPermission();
+    await Geolocator.requestPermission();
+    Position position = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high);
+    print(position);
+  }
 
   //firestore
   final FireStoreService fireStoreService = FireStoreService();
@@ -101,7 +108,7 @@ class _HomeSState extends State<HomeS> {
             SizedBox(
               height: 30.0,
             ),
-            ElevatedButton(onPressed: _Location, child: Text('Get Loc')),
+            ElevatedButton(onPressed: getLocation, child: Text('Get Loc')),
             Text(
               "Current Loation of the User",
               style: TextStyle(
