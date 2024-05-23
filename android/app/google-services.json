@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "59959695061",
+    "project_id": "utaxi-f6ec7",
+    "storage_bucket": "utaxi-f6ec7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:59959695061:android:04505e1f981c5494fd745c",
+        "android_client_info": {
+          "package_name": "com.example.utaxi"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCKOtugmpysu-zDhNM1O6IsG9wn-q4nHQg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
