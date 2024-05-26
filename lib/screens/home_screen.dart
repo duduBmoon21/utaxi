@@ -1,24 +1,32 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_osm_plugin/flutter_osm_plugin.dart';
-import 'package:utaxi/services/auth.dart';
-import 'package:utaxi/services/database.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
 
-  @override
-  State<HomeScreen> createState() => _HomeScreenState();
+void main() {
+  runApp(MyApp());
 }
 
-class _HomeScreenState extends State<HomeScreen> {
-  final _mapController = MapController();
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Welcome'),
+    return MaterialApp(
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('OSM Flutter Example'),
+        ),
+        body: OSMFlutter(
+          controller: MapController(
+    
+            initPosition: GeoPoint(
+              latitude: 37.7749,
+              longitude: -122.4194,
+            ),
+          ),
+          trackMyPosition: false,
+          initZoom: 10.0,
+          minZoomLevel: 2,
+          maxZoomLevel: 18, osmOption: null,
+        ),
       ),
     );
   }
